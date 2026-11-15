@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0a1121">
+  <meta name="description" content="Local-first content production ERP for your own Mac workspace.">
+  <title>Omni Business Suite Pro</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-icon">▶</div><div><strong>Omni Business Suite Pro</strong><small>Local Content Operations ERP</small></div></div>
+    <div class="nav-label">WORKSPACE</div>
+    <nav id="mainNav" aria-label="Primary navigation">
+      <button type="button" class="nav-link active" data-view="dashboard"><span class="nav-ico">▦</span><span>Dashboard</span></button>
+      <button type="button" class="nav-link" data-view="pages"><span class="nav-ico">▤</span><span>Page Manager</span></button>
+      <button type="button" class="nav-link" data-view="production"><span class="nav-ico">▰</span><span>Production</span></button>
+      <button type="button" class="nav-link" data-view="inventory"><span class="nav-ico">▥</span><span>Video Inventory</span></button>
+      <button type="button" class="nav-link" data-view="planner"><span class="nav-ico">▦</span><span>Publishing Planner</span></button>
+      <button type="button" class="nav-link" data-view="world"><span class="nav-ico">◷</span><span>World Clocks</span></button>
+      <button type="button" class="nav-link" data-view="search"><span class="nav-ico">⌕</span><span>Global Search</span></button>
+      <button type="button" class="nav-link" data-view="workspace"><span class="nav-ico">⚙</span><span>Workspace & Settings</span></button>
+    </nav>
+    <div class="sidebar-footer">
+      <span class="eyebrow">LOCAL WORKSPACE</span>
+      <strong id="sideConnection">Not connected</strong>
+      <small id="sideDetails">Select Downloads in Chrome</small>
+      <button type="button" class="btn btn-quiet btn-small" id="connectSide">Connect folder</button>
+    </div>
+  </aside>
+  <main class="main-area">
+    <header class="topbar">
+      <button type="button" class="mobile-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+      <div class="breadcrumb">OmniSuite Pro <span>/</span> <b id="currentViewName">Dashboard</b></div>
+      <div class="top-actions"><button type="button" class="btn btn-quiet btn-small top-search" id="quickSearch">⌕ Search everything</button><span id="saveIndicator" class="save-indicator">All changes saved locally</span><span class="connection-pill" id="connectionPill">● Disconnected</span></div>
+    </header>
+    <div class="page-content">
+      <section class="view active" id="dashboard">
+        <div class="page-heading"><div><span class="eyebrow">OPERATIONS CENTER</span><h1>Dashboard</h1><p>One place to find everything you're working on.</p></div><button class="btn btn-primary" id="dashNewVideo">+ Create Video</button></div>
+        <div class="metrics">
+          <article class="metric blue"><span>Facebook Pages</span><strong id="mPages">0</strong><small>Separate workspaces</small></article>
+          <article class="metric green"><span>Total Videos</span><strong id="mVideos">0</strong><small>Tracked locally</small></article>
+          <article class="metric amber"><span>In Production</span><strong id="mProduction">0</strong><small>Work in progress</small></article>
+          <article class="metric purple"><span>Ready / Published</span><strong id="mReady">0 / 0</strong><small>Content lifecycle</small></article>
+        </div>
+        <div class="two-columns">
+          <article class="panel"><div class="panel-heading"><h2>Continue Working</h2><button class="text-button" data-goto="production">All videos →</button></div><div id="dashboardVideos" class="stack"></div></article>
+          <article class="panel"><div class="panel-heading"><h2>Daily Publishing Slots</h2><span class="hint" id="todayDate"></span></div><div id="slotsPreview"></div><p class="hint panel-note">All pages · Asia/Kolkata (IST). Assign slots manually in the Publishing Planner.</p><button class="btn btn-outline btn-small" data-goto="planner">Open planner →</button></article>
+        </div>
+        <div class="two-columns"><article class="panel"><div class="panel-heading"><h2>Page Overview</h2><button class="text-button" data-goto="pages">Manage →</button></div><div id="dashPages"></div></article><article class="panel"><div class="panel-heading"><h2>Tomorrow & Next 7 Days</h2><button class="text-button" data-goto="planner">Planner →</button></div><div id="dashboardForecast"></div></article></div>
+      </section>
+      <section class="view" id="pages">
+        <div class="page-heading"><div><span class="eyebrow">MASTER DATA</span><h1>Page Manager</h1><p>Manage each Facebook page separately.</p></div><button class="btn btn-primary" id="addPage">+ New Page</button></div>
+        <article class="panel"><div class="panel-heading"><h2>All Pages</h2><span class="hint" id="pageCount"></span></div><div id="pagesTable"></div></article>
+      </section>
+      <section class="view" id="production">
+        <div class="page-heading"><div><span class="eyebrow">MANUFACTURING</span><h1>Video Production</h1><p>Create, track, review and finish every content product.</p></div><button class="btn btn-primary" id="newVideo">+ Create Video</button></div>
+        <div class="toolbar"><input id="productionSearch" class="field" type="search" placeholder="Search by title or video ID"><select id="productionPageFilter" class="field" aria-label="Filter by page"></select><select id="productionStatusFilter" class="field" aria-label="Filter by status"><option value="all">All statuses</option><option value="Draft">Draft</option><option value="In Production">In Production</option><option value="Ready">Ready</option><option value="Scheduled">Scheduled</option><option value="Published">Published</option></select></div>
+        <div id="productionList" class="video-grid"></div>
+      </section>
+      <section class="view" id="inventory">
+        <div class="page-heading"><div><span class="eyebrow">FINISHED & WIP GOODS</span><h1>Video Inventory</h1><p>Searchable index of every video record.</p></div><button class="btn btn-primary" id="inventoryNew">+ Create Video</button></div>
+        <div class="inventory-topbar"><div class="layout-switch" role="group" aria-label="Inventory view"><button type="button" class="btn btn-primary btn-small" id="layoutTable">▤ Table</button><button type="button" class="btn btn-outline btn-small" id="layoutKanban">▥ Kanban</button></div><span class="hint">Drag cards across Kanban columns to change production status.</span></div>
+        <div class="toolbar"><input id="inventorySearch" class="field" type="search" placeholder="Search video ID, title, description"><select id="inventoryPageFilter" class="field" aria-label="Filter by page"></select><select id="inventoryStatusFilter" class="field" aria-label="Filter by status"><option value="all">All statuses</option><option value="Draft">Draft</option><option value="In Production">In Production</option><option value="Ready">Ready</option><option value="Scheduled">Scheduled</option><option value="Published">Published</option></select></div>
+        <article class="panel" id="inventoryTablePanel"><div id="inventoryTable"></div></article><div id="kanbanBoard" class="kanban-board" hidden></div>
+      </section>
+
+      <section class="view" id="planner">
+        <div class="page-heading"><div><span class="eyebrow">PUBLISHING CONTROL</span><h1>Publishing Planner</h1><p>Manually assign, review, reschedule and mark published. No automatic Facebook uploads.</p></div><span class="timezone-pill">◷ All times in IST (Asia/Kolkata)</span></div>
+        <div class="toolbar planner-toolbar">
+          <button type="button" class="btn btn-outline btn-small" id="plannerPrev" aria-label="Previous day">←</button>
+          <label class="inline-field">Day <input type="date" id="plannerDate" class="field" aria-label="Planner date"></label>
+          <button type="button" class="btn btn-outline btn-small" id="plannerNext" aria-label="Next day">→</button>
+          <button type="button" class="btn btn-quiet btn-small" id="plannerToday">Today</button>
+          <label class="inline-field">Page <select id="plannerPage" class="field" aria-label="Planner Facebook page"></select></label>
+        </div>
+        <div id="plannerStats" class="planner-metrics"></div>
+        <div id="plannerRows"></div>
+        <article class="panel"><div class="panel-heading"><h2>Upcoming 7-Day Capacity</h2><span class="hint">Today through 6 days ahead, across all pages</span></div><div id="plannerForecast"></div></article>
+      </section>
+      <section class="view" id="world">
+        <div class="page-heading"><div><span class="eyebrow">AUDIENCE TIME ZONES</span><h1>World Clocks</h1><p>Live local clocks and a time-of-day activity guide—not actual Facebook audience analytics.</p></div><span class="timezone-pill" id="istNow">IST</span></div>
+        <div class="activity-legend"><span class="activity-key prime">● 5–8 PM · Preferred window</span><span class="activity-key active">● 9 AM–5 PM · Working hours</span><span class="activity-key evening">● 8 PM–1 AM · Evening</span><span class="activity-key quiet">● 1–9 AM · Low activity</span></div>
+        <div id="audienceNow" class="audience-now" role="status"></div><div id="clocksGrid" class="clocks-grid"></div>
+        <article class="panel clock-disclaimer"><strong>How activity labels work</strong><p class="hint">These are your custom time-of-day rules. Country clocks represent example cities and time zones; a country's audiences may span several zones. Preferred time windows do not guarantee engagement or audience availability.</p></article>
+      </section>
+      <section class="view" id="search">
+        <div class="page-heading"><div><span class="eyebrow">ALL CONTENT, ONE SEARCH</span><h1>Global Search</h1><p>Find video titles, captions, numbered prompts, voiceover text and additional TXT notes stored on your Mac.</p></div><button type="button" class="btn btn-outline" id="refreshSearch">↻ Refresh local TXT index</button></div>
+        <div class="toolbar search-toolbar"><input type="search" id="globalQuery" class="field" placeholder="Search any video, Veo prompt, voiceover, or note…" autocomplete="off"><select id="globalPage" class="field" aria-label="Filter search by page"></select><select id="globalStatus" class="field" aria-label="Filter search by status"><option value="all">All statuses</option><option>Draft</option><option>In Production</option><option>Ready</option><option>Scheduled</option><option>Published</option></select><select id="globalAspect" class="field" aria-label="Filter by aspect ratio"><option value="all">Any aspect ratio</option><option value="9:16">9:16 Vertical</option><option value="16:9">16:9 Horizontal</option><option value="Unknown">Not yet available</option></select><select id="globalAudience" class="field" aria-label="Filter by audience"><option value="all">All audiences</option><option>USA</option><option>UK</option><option>Mixed</option></select><label class="date-filter-label">Publishing day <input type="date" id="globalDate" class="field" aria-label="Filter by publishing day"></label><button type="button" class="btn btn-quiet btn-small" id="clearSearchFilters">Clear filters</button></div>
+        <div class="search-help" id="searchState" role="status" aria-live="polite">Search your connected workspace. TXT contents are read locally when you search.</div>
+        <div id="searchResults" class="search-results"></div>
+      </section>
+      <section class="view" id="details">
+        <div class="detail-back"><button type="button" class="text-button" id="backToProduction">← Back to Production</button></div>
+        <div id="detailsHeader"></div>
+        <div class="tabs" id="detailTabs" role="tablist">
+          <button type="button" data-tab="overview" class="tab active">Overview</button><button type="button" data-tab="prompts" class="tab">Veo Prompts & Clips</button><button type="button" data-tab="voiceover" class="tab">Voiceover</button><button type="button" data-tab="files" class="tab">Files & Media</button><button type="button" data-tab="publishing" class="tab">Publishing</button><button type="button" data-tab="audit" class="tab">Audit History</button>
+        </div>
+        <div id="detailsBody"></div>
+      </section>
+      <section class="view" id="workspace">
+        <div class="page-heading"><div><span class="eyebrow">ADMINISTRATION</span><h1>Workspace & Settings</h1><p>Permissions, local files and portable JSON backups.</p></div></div>
+        <div class="two-columns"><article class="panel"><h2>Local Workspace</h2><p class="hint">Choose Downloads. The app opens or creates <code>OmniSuitePro</code> inside it.</p><div class="workspace-state" id="workspaceStatus">Not connected</div><div class="button-row"><button class="btn btn-primary" id="connect">Connect / Change Folder</button><button class="btn btn-outline" id="reconnect">Reconnect Saved</button><button class="btn btn-danger" id="disconnect">Forget Folder</button></div><p class="hint panel-note">Forgetting removes the browser's saved handle, never your files. Permission may need to be granted again.</p></article><article class="panel"><h2>Data & Backups</h2><p class="hint">Local <code>system/metadata.json</code> is the index. Each video also has its own metadata, TXT files and audit log.</p><div class="button-row"><button class="btn btn-outline" id="export">Export JSON</button><button class="btn btn-outline" id="import">Import JSON</button><input hidden id="importFile" type="file" accept="application/json,.json"></div><p class="hint panel-note">JSON export includes page, video, and publishing-slot metadata, but not media or TXT contents. Always keep the workspace folder itself backed up separately.</p></article></div>
+        <article class="panel"><div class="panel-heading"><h2>Daily Publishing Schedule</h2><span class="hint">Asia/Kolkata · 8 slots for each page</span></div><div id="settingsSlots" class="slot-grid"></div></article>
+        <article class="panel"><h2>Privacy & Local File Access</h2><p class="hint">This is a static website. It does not upload videos to the internet. Chrome asks you to grant folder access; the original dragged files remain untouched. Video copies are written only when you click Save to ERP.</p></article>
+      </section>
+    </div>
+  </main>
+</div>
+<dialog id="pageDialog" class="modal"><form id="pageForm"><div class="modal-header"><h2 id="pageDialogTitle">Create Facebook Page</h2><button type="button" class="icon-button" id="closePageDialog">✕</button></div><label class="form-label">Page name<input required maxlength="100" id="pageName" class="field" placeholder="e.g. Daily Facts USA"></label><label class="form-label">Audience<select id="pageAudience" class="field"><option>USA</option><option>UK</option><option>Mixed</option></select></label><label class="form-label">Notes<textarea id="pageNotes" class="field" rows="3" maxlength="2000"></textarea></label><div class="button-row align-right"><button class="btn btn-outline" type="button" id="cancelPageDialog">Cancel</button><button class="btn btn-primary" type="submit">Save Page</button></div></form></dialog>
+<dialog id="videoDialog" class="modal modal-large"><form id="videoForm"><div class="modal-header"><h2>Create Video Product</h2><button type="button" class="icon-button" id="closeVideoDialog">✕</button></div><p class="hint">Creates a dedicated local folder and editable TXT files for this video.</p><div class="form-grid"><label class="form-label">Facebook Page <span class="required">*</span><select class="field" id="videoPage" required></select></label><label class="form-label">Clip duration<select class="field" id="newClipSeconds"><option value="8">8 seconds (default)</option><option value="10">10 seconds</option></select></label></div><label class="form-label">Video title <span class="required">*</span><input class="field" id="newTitle" maxlength="300" required placeholder="Enter video title"></label><label class="form-label">Facebook description <span class="required">*</span><textarea class="field" id="newDescription" maxlength="10000" required rows="4" placeholder="Caption, hashtags and description"></textarea></label><div class="button-row align-right"><button class="btn btn-outline" type="button" id="cancelVideoDialog">Cancel</button><button class="btn btn-primary" type="submit" id="submitVideo">Create Video & Folder</button></div></form></dialog>
+<input id="promptUpload" type="file" accept=".txt,text/plain" hidden>
+<input id="voiceoverUpload" type="file" accept=".txt,text/plain" hidden>
+<input id="thumbnailUpload" type="file" accept="image/*" hidden>
+<input id="finalUpload" type="file" accept="video/*,.mp4,.mov,.webm,.m4v" hidden>
+<input id="clipUpload" type="file" accept="video/*,.mp4,.mov,.webm,.m4v" hidden>
+<input id="extraTextUpload" type="file" accept=".txt,text/plain" hidden>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="app.js" defer></script>
+</body></html>
