@@ -21,6 +21,7 @@
       <button type="button" class="nav-link" data-view="planner"><span class="nav-ico">▦</span><span>Publishing Planner</span></button>
       <button type="button" class="nav-link" data-view="world"><span class="nav-ico">◷</span><span>World Clocks</span></button>
       <button type="button" class="nav-link" data-view="search"><span class="nav-ico">⌕</span><span>Global Search</span></button>
+      <button type="button" class="nav-link" data-view="phase4"><span class="nav-ico">◈</span><span>Phase 4 Studio</span></button>
       <button type="button" class="nav-link" data-view="workspace"><span class="nav-ico">⚙</span><span>Workspace & Settings</span></button>
     </nav>
     <div class="sidebar-footer">
@@ -100,6 +101,11 @@
         </div>
         <div id="detailsBody"></div>
       </section>
+      <section class="view" id="phase4">
+        <div class="page-heading"><div><span class="eyebrow">PHASE 4 · LOCAL-FIRST</span><h1>Automation & Analytics Studio</h1><p>Calendar, analytics, revenue, production, bulk imports and backups. No Facebook API connection or automatic publishing.</p></div><button class="btn btn-outline" id="p4Refresh">Refresh</button></div>
+        <div class="p4-tabs" id="p4Tabs"><button data-p4tab="calendar" class="active">Calendar</button><button data-p4tab="analytics">Analytics</button><button data-p4tab="revenue">Revenue</button><button data-p4tab="pipeline">Video Pipeline</button><button data-p4tab="bulk">Bulk Manager</button><button data-p4tab="backup">Backup & Restore</button></div>
+        <div id="p4Content"></div>
+      </section>
       <section class="view" id="workspace">
         <div class="page-heading"><div><span class="eyebrow">ADMINISTRATION</span><h1>Workspace & Settings</h1><p>Permissions, local files and portable JSON backups.</p></div></div>
         <div class="two-columns"><article class="panel"><h2>Local Workspace</h2><p class="hint">Choose Downloads. The app opens or creates <code>OmniSuitePro</code> inside it.</p><div class="workspace-state" id="workspaceStatus">Not connected</div><div class="button-row"><button class="btn btn-primary" id="connect">Connect / Change Folder</button><button class="btn btn-outline" id="reconnect">Reconnect Saved</button><button class="btn btn-danger" id="disconnect">Forget Folder</button></div><p class="hint panel-note">Forgetting removes the browser's saved handle, never your files. Permission may need to be granted again.</p></article><article class="panel"><h2>Data & Backups</h2><p class="hint">Local <code>system/metadata.json</code> is the index. Each video also has its own metadata, TXT files and audit log.</p><div class="button-row"><button class="btn btn-outline" id="export">Export JSON</button><button class="btn btn-outline" id="import">Import JSON</button><input hidden id="importFile" type="file" accept="application/json,.json"></div><p class="hint panel-note">JSON export includes page, video, and publishing-slot metadata, but not media or TXT contents. Always keep the workspace folder itself backed up separately.</p></article></div>
@@ -119,4 +125,5 @@
 <input id="extraTextUpload" type="file" accept=".txt,text/plain" hidden>
 <div id="toast" role="status" aria-live="polite"></div>
 <script src="app.js" defer></script>
+<script src="phase4.js" defer></script>
 </body></html>
