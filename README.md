@@ -1,14 +1,16 @@
-# Omni Business Suite Pro
+# Omni Business Suite Pro — Phase 4
 
-Static GitHub Pages application for local-first video production tracking.
+Static, local-first ERP for Facebook page and video-production workflows.
+
+## Features
+Phase 3: dashboard, page manager, video inventory, production board, publishing planner, search, world clocks, and local video/TXT management.
+
+Phase 4: monthly calendar, manually entered Facebook analytics, earnings and RPM tracking, production pipeline stages, CSV import/export for analytics and earnings, and combined metadata backup/restore.
+
+## Privacy
+Connect a local folder in Chrome/Chromium. Phase 3 metadata stays in `OmniSuitePro/system/metadata.json` (schema v3); Phase 4 data is saved separately in `OmniSuitePro/system/phase4.json`. The public repository contains application source code only. Video media and TXT content are **not** included in the metadata backup.
 
 ## Deployment
-The full Phase 3 application files are `index.html`, `styles.css`, and `app.js`. Place them at the repository root. The Pages workflow will publish the site after a push to `main`.
+GitHub Pages uses `.github/workflows/pages.yml` on pushes to `main`. Source files: `index.html`, `styles.css`, `app.js`, and `phase4.js`.
 
-## Local data
-The app is designed to use Chrome's File System Access API. Local media, prompts, and workspace metadata remain in the folder selected on your Mac, not in this public repository.
-
-## GitHub Pages
-In repository Settings → Pages, select **GitHub Actions** as the build and deployment source.
-
-**Status:** The application source files have not yet been transferred to this repository. Do not consider the website deployed until all three files are committed and Pages reports success.
+**Important:** Analytics and earnings are manually entered or CSV-imported, not synced from Meta. The production pipeline is a tracker, not an automated video renderer or publisher.
